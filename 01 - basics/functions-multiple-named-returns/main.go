@@ -49,6 +49,22 @@ func add2(a, b int) (sum int) {
 	return
 }
 
+// Function Accepting Multiple Arguments
+func sum3(numbers ...int) int {
+	total := 0
+
+	for _, num := range numbers {
+		total += num
+	}
+
+	return total
+}
+
+// Higher-Order Functions (Functions as Arguments)
+func applyOperation(x, y int, operation func(int, int) int) int {
+	return operation(x, y)
+}
+
 func main() {
 	// Function without parameters
 	greet() // function call
@@ -97,4 +113,37 @@ func main() {
 		     1. the variable sum is automatically return
 			 2. named return values improve readability when return values are self-explanatory
 	*/
+
+	// Function Accepting Multiple Arguments
+	fmt.Println("Total:", sum3(1, 2, 3, 4, 5))
+	/*
+	   - Notes:
+	     1. * ...type will accept any number of type arguments
+	*/
+
+	// Anonymous Functions (Lambdas)
+	square2 := func(n int) (result int) {
+		result = n * n
+		return
+	}
+	fmt.Println("Square:", square2(5))
+	/*
+		   - Notes:
+		     1. used for short-lived, inline operations
+			 2. used in event driven programming
+			 3. used for callbacks
+	*/
+
+	// Higher-Order Functions (Functions as Arguments)
+	add3 := func(a, b int) int { return a + b }
+	divide2 := func(a, b int) int { return a / b }
+	fmt.Println("Result:", applyOperation(10, 5, add3))
+	fmt.Println("Result2:", applyOperation(10, 5, divide2))
+	/*
+		   - Notes:
+		     1. functions can accept other functions as argument or returns a function
+			 2. useful in creating middlewares in apps.
+			 3. encapsulation, readability, reusability
+	*/
+
 }
