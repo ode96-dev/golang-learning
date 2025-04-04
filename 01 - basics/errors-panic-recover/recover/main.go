@@ -20,6 +20,7 @@ func safeOperation() {
 
 	fmt.Println("Performing risky operation...")
 	panic("Critical failure!") // Triggers panic
+
 	fmt.Println("This line will not execute")
 }
 
