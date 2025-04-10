@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Melody Chat</title>
+  </head>
+  <body>
+    <input type="text" id="msg" placeholder="Enter message..." />
+    <button onclick="send()">Send</button>
+    <ul id="chat"></ul>
+
+    <script>
+      const ws = new WebSocket("ws://localhost:5000/ws");
+
+      ws.onmessage = function (e) {
+        const li = document.createElement("li");
+        li.textContent = "🔊 " + e.data;
+        document.getElementById("chat").appendChild(li);
+      };
+
+      function send() {
+        const msg = document.getElementById("msg").value;
+        ws.send(msg);
+        document.getElementById("msg").value = "";
+      }
+    </script>
+  </body>
+</html>
